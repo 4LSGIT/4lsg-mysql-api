@@ -1,3 +1,37 @@
+/*const express = require("express");
+const cors = require("cors");
+
+const app = express();
+
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+
+// parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true })); 
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to the 4lsg API.", test: process.env.test });
+});
+
+require("./app/routes/tutorial.routes.js")(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});*/
+
+
+
+
+
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
@@ -30,7 +64,7 @@ db.connect((err) => {
 });
 
 // Route to handle user authentication and query processing
-app.get("/db", (req, res) => {
+app.get("/", (req, res) => {
   const { username, password, query } = req.query;
 
   // Query to check user authorization
@@ -61,11 +95,15 @@ app.get('/delay', (req, res) => {
   const { value, delay, callback} = req.query
     // Do something
     console.log('Received GET request at /');
-    let v = parseInt(value, 10) + 1;
+    let v = value + 1
+    // Respond to the webhook
     //res.send('Webhook received successfully');
     res.json({message: "success", value:v})
+
+    // Add a delay of one hour (in milliseconds)
     setTimeout(() => {
-        fetch(`${callback}?message=delayed&value=${delay} ms`);
+        // Do something else after the delay
+        fetch(callback+"?msg=delayed10");
     }, delay); 
 });
 
