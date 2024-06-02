@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Node.js Restful CRUD API with Node.js, Express and MySQL",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
+  "scripts": {  },
   "keywords": [
     "nodejs",
     "express",
